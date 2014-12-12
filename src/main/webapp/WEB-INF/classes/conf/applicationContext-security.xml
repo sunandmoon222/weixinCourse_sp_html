@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<global-method-security pre-post-annotations="enabled"/>
+
+  	<!-- use-expressions='true' needs 'access' to be 'hasRole(role) or hasAnyRole(role)' -->
+	<http use-expressions="true"  entry-point-ref="idEntryPoint" access-denied-page="">
+		<custom-filter ref="requestAuthenticationFilter" after="PRE_AUTH_FILTER" />
+		<intercept-url pattern="/include/**" filters="none" />
+		<intercept-url pattern="/login.nhn" access="permitAll" />
+		<intercept-url pattern="/local_login.nhn" access="permitAll" />
+	    <intercept-url pattern="/**" access="hasAnyRole('EXTERNAL_ROLE_USER')" />
+	    
+	    <!-- timeout and prevent forgery session(none,migrateSession,newSession)-->
+	    <session-management invalid-session-url="/login.nhn" session-fixation-protection="none"/>
+		<form-login />
+		<logout logout-url="/logout.nhn"  success-handler-ref="logoutHandler" />
+	</http>
+
+	<beans:bean id="logoutHandler" class="com.nhnst.pokopang.common.security.LogoutHandler"/>
+
+	<beans:bean id="requestAuthenticationFilter" class="com.nhnst.pokopang.common.filter.RequestAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="checkForPrincipalChanges" value="true" />
+		<beans:property name="invalidateSessionOnPrincipalChange" value="false" />
+	</beans:bean>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="preauthAuthProvider" />
+	</authentication-manager>
+
+	<beans:bean id="idEntryPoint" class="com.nhnst.pokopang.common.security.IdEntryPoint">
+		<beans:property name="loginUrl" value="#{commonprop['common.loginUrl']}"/>
+	</beans:bean>
+
+	<beans:bean id="preauthAuthProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
+		<beans:property name="preAuthenticatedUserDetailsService" ref="userDetailServiceWrapper" />
+	</beans:bean>
+
+	<beans:bean id="userDetailServiceWrapper" class="com.nhnst.pokopang.common.security.UserDetailServiceWrapper">
+		<beans:property name="userDetailsService" ref="userDetailsService" />
+	</beans:bean>
+
+	<beans:bean id="userDetailsService" class="com.nhnst.pokopang.common.security.RegUserDetailService"/>
+
+</beans:beans>

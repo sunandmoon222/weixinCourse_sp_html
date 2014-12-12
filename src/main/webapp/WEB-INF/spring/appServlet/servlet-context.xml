@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"> 
+		<property name="validationMessageSource" ref="messageSource"/> </bean> -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:properties/messages" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="fileEncodings" value="UTF-8" />
+	</bean>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="zh" />
+	</bean>
+
+	<!-- JSP View Resolver -->
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="nhn" value="text/html" />
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+			</map>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+					<property name="viewClass"
+						value="org.springframework.web.servlet.view.JstlView" />
+					<property name="prefix" value="/WEB-INF/jsp/" />
+					<property name="suffix" value=".jsp" />
+				</bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+					<property name="prefixJson" value="false" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<context:component-scan base-package="com.app.weixin" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>
+	</context:component-scan>
+	
+	<!-- <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"> 
+		<property name="interceptors"> <list> <ref bean="localeChangeInterceptor" 
+		/> </list> </property> </bean> -->
+	<!-- <bean id="handlerAdapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> -->
+
+	<!-- validator by annotation -->
+	<!-- <property name="webBindingInitializer"> <bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer"> 
+		<property name="validator" ref="annotationvalidator"/> </bean> </property> -->
+
+	<!-- json转换器 -->
+	<!-- <property name="messageConverters"> <list> <ref bean="mappingJacksonHttpMessageConverter" 
+		/> </list> </property> </bean> -->
+	<!-- json转换器 -->
+	<!-- <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" 
+		/> -->
+
+	<!-- validator by annotation -->
+	<!-- <bean id="annotationvalidator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"> 
+		<property name="validationMessageSource"> <ref bean="messageSource" /> </property> 
+		</bean> -->
+
+
+
+	<!--取本地化语言 <bean id="localeChangeInterceptor" class="com.nhnst.pokopang.common.interceptor.LocaleInterceptor"> 
+		<property name="paramName" value="lang" /> </bean> -->
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+
+
+</beans>
+	
+	

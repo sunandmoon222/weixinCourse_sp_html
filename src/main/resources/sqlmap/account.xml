@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="com.app.weixin.account">
+	<select id="selectUserInfo" parameterClass="java.util.Map"  resultClass="Integer">
+		SELECT
+			count(user_name) 
+		FROM
+			t_user
+		WHERE
+			1=1 
+			<isNotEmpty property="userId" prepend=" AND ">
+				user_name = #userId#
+			</isNotEmpty>
+			<isNotEmpty property="passwd" prepend=" AND ">
+				password = #passwd#
+			</isNotEmpty>
+	</select>
+</sqlMap>

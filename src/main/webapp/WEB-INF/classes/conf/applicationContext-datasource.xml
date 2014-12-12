@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   
+	<!-- Properties Files -->
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:properties/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- DataSource Configuration -->
+	<bean id="adminDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${admin.jdbc.driverClassName}"/>
+		<property name="url" value="${admin.jdbc.url}"/>
+		<property name="username" value="${admin.jdbc.username}"/>
+		<property name="password" value="${admin.jdbc.password}"/>
+		<property name="initialSize" value="${admin.jdbc.initialSize}"/>
+		<property name="maxActive" value="${admin.jdbc.maxActive}"/>
+		<property name="minIdle" value="${admin.jdbc.initialSize}"/>
+		<property name="maxWait" value="3000"/>
+		<property name="poolPreparedStatements" value="true"></property>
+		<property name="maxOpenPreparedStatements" value="50"></property>
+	</bean>
+
+</beans>

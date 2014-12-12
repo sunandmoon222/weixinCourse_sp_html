@@ -1,0 +1,9 @@
+<decorators defaultdir="/WEB-INF/decorators">
+
+	<decorator name="baseDecorator" page="/WEB-INF/jsp/decorators/baseDecorator.jsp">
+		<pattern>/notice/*.do</pattern>
+		<pattern>/content/*.do</pattern>
+		<pattern>/shopInfo/*.do</pattern>
+		<!-- TO BE ADDED HERE -->
+	</decorator>
+</decorators>
