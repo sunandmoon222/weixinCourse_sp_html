@@ -24,6 +24,4 @@
 	imgPath = contextPath + "/include/images/";
 	jsPath = contextPath + "/include/js/";
 	cssPath = contextPath + "/include/css/";
-	libPath = contextPath + "/include/lib/";
-	loginImgPath = contextPath + "/include/images/login/";
 %>
