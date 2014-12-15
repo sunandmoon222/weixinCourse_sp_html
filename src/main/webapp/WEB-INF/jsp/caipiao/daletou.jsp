@@ -24,8 +24,8 @@
 	<ul data-role="listview" data-dividertheme="e">
 	   <li data-role="list-divider">近十期开奖结果</li>
 	   	   <c:forEach var="daletouInfo" items="${daletouInfoList}">
-			   <li>第${daletouInfo.id}期 <span style="position: absolute;right: 50px;color:red">${daletouInfo.resultNum_red}</span>
-			   						   <span style="position: absolute;right: 10px;color:blue">${daletouInfo.resultNum_blue}</span>
+			   <li>第${daletouInfo.id}期 <span style="position: absolute;right: 50px;color:red">${daletouInfo.resultNum}</span>
+			   						   <span style="position: absolute;right: 10px;color:blue">${daletouInfo.resultNumBlue}</span>
 			   </li>
 		   </c:forEach>
 	</ul>

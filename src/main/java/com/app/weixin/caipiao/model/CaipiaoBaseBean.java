@@ -2,31 +2,35 @@ package com.app.weixin.caipiao.model;
 
 public class CaipiaoBaseBean {
 
-	//期数
 	private String id = "";
-	//开奖号码
 	private String resultNum = "";
-	//开奖日期
 	private String openTime = "";
-	//更新日期
 	private String updateDate = "";
-	//奖池累计金额
-	private String remaindBounus="";
-
+	private String remaindBounus = "";
+	private String resultNumBlue = "";
+	private String resultNumSpecial = "";
 	
-	
-//-----------------------------------------------------------------	
-	//中奖数目
 	private String winningNum = "";
-	//中奖金额
 	private String bonusAmount = "";
-//-----------------------------------------------------------------
-	
-	
-	
-	
+
+	public String getResultNumBlue() {
+		return resultNumBlue;
+	}
+
+	public void setResultNumBlue(String resultNumBlue) {
+		this.resultNumBlue = resultNumBlue;
+	}
+
+	public String getResultNumSpecial() {
+		return resultNumSpecial;
+	}
+
+	public void setResultNumSpecial(String resultNumSpecial) {
+		this.resultNumSpecial = resultNumSpecial;
+	}
+
 	public String getResultNum() {
-		return resultNum;
+		return this.resultNum;
 	}
 
 	public void setResultNum(String resultNum) {
@@ -34,7 +38,7 @@ public class CaipiaoBaseBean {
 	}
 
 	public String getRemaindBounus() {
-		return remaindBounus;
+		return this.remaindBounus;
 	}
 
 	public void setRemaindBounus(String remaindBounus) {
@@ -42,7 +46,7 @@ public class CaipiaoBaseBean {
 	}
 
 	public String getUpdateDate() {
-		return updateDate;
+		return this.updateDate;
 	}
 
 	public void setUpdateDate(String updateDate) {
@@ -50,7 +54,7 @@ public class CaipiaoBaseBean {
 	}
 
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(String id) {
@@ -58,7 +62,7 @@ public class CaipiaoBaseBean {
 	}
 
 	public String getWinningNum() {
-		return winningNum;
+		return this.winningNum;
 	}
 
 	public void setWinningNum(String winningNum) {
@@ -66,7 +70,7 @@ public class CaipiaoBaseBean {
 	}
 
 	public String getBonusAmount() {
-		return bonusAmount;
+		return this.bonusAmount;
 	}
 
 	public void setBonusAmount(String bonusAmount) {
@@ -74,7 +78,7 @@ public class CaipiaoBaseBean {
 	}
 
 	public String getOpenTime() {
-		return openTime;
+		return this.openTime;
 	}
 
 	public void setOpenTime(String openTime) {

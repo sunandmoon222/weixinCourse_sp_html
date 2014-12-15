@@ -1,61 +1,61 @@
 package com.app.weixin.caipiao.service;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.input.SAXBuilder;
 import org.springframework.stereotype.Service;
 
 import com.app.weixin.caipiao.model.CaipiaoBaseBean;
-import com.app.weixin.caipiao.model.CaipiaoDltBean;
 import com.app.weixin.caipiao.model.ConstantCaipiao;
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
 
 @Service
 public class CaipiaoService {
 
-	public List<CaipiaoDltBean> getDltInfo() {
+	public List<CaipiaoBaseBean> getDltInfo() {
 
-		List<CaipiaoDltBean> arr = new ArrayList<CaipiaoDltBean>();
-		XStream xsBase = new XStream(new DomDriver());
-		List<?> list = null;
+		List<CaipiaoBaseBean> arr = new ArrayList<CaipiaoBaseBean>();
 		File file = null;
-		FileInputStream input = null;
+		
+		SAXBuilder builder=new SAXBuilder(false);    
 		try {
-
 			file = new File(ConstantCaipiao.getDaLeTouPath());
-
-			input = new FileInputStream(file);
-			list = (ArrayList<?>) xsBase.fromXML(input);
-
-			for (int i = 0; i < list.size(); i++) {
-				CaipiaoBaseBean base = (CaipiaoBaseBean) list.get(i);
-				CaipiaoDltBean daletou = new CaipiaoDltBean();
+			Document document=builder.build(file);   
+			Element employees=(Element) document.getRootElement();
+			
+			List<?> employeeList=employees.getChildren("org.weixin.course.service.caipiao.bean.CaipiaoBaseBean");
+			
+			for (int i = 0; i < employeeList.size(); i++) {
+				Element employee=(Element)employeeList.get(i);
 				
-				daletou.setId(base.getId());
-				daletou.setRemaindBounus(base.getRemaindBounus());
-				daletou.setOpenTime(base.getOpenTime());;
-				daletou.setUpdateDate(base.getUpdateDate());
-				daletou.setResultNum_red(base.getResultNum().split("@")[0]);
-				daletou.setResultNum_blue(base.getResultNum().split("@")[1]);
+				List<?> employeeInfo=employee.getChildren();
 				
+				CaipiaoBaseBean daletou = new CaipiaoBaseBean();
+				for (int j = 0; j < employeeInfo.size(); j++) {
+					
+					
+					if (((Element)employeeInfo.get(j)).getName().equals("id")) {
+						daletou.setId(((Element)employeeInfo.get(j)).getValue());
+					} else if (((Element)employeeInfo.get(j)).getName().equals("resultNum")) {
+						daletou.setResultNum(((Element)employeeInfo.get(j)).getValue());
+					} else if (((Element)employeeInfo.get(j)).getName().equals("resultNumBlue")) {
+						daletou.setResultNumBlue(((Element)employeeInfo.get(j)).getValue());
+					} else if (((Element)employeeInfo.get(j)).getName().equals("openTime")) {
+						daletou.setOpenTime(((Element)employeeInfo.get(j)).getValue());
+					} else if (((Element)employeeInfo.get(j)).getName().equals("updateDate")) {
+						daletou.setUpdateDate(((Element)employeeInfo.get(j)).getValue());
+					} else if (((Element)employeeInfo.get(j)).getName().equals("remaindBounus")) {
+						daletou.setRemaindBounus(((Element)employeeInfo.get(j)).getValue());
+					}
+				}
 				arr.add(daletou);
 			}
-
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
+			e.getStackTrace();
 		}
-
-		try {
-			input.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		input = null;
 		return arr;
 	}
 }

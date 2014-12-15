@@ -4,7 +4,7 @@ public class ConstantCaipiao {
 
 	public final static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 	public final static int THREAD_SLEEP_TIME = 2;
-	private static boolean isPC = true;
+	private static boolean isPC = false;
 	
 	public static void setIsPC (boolean bool) {
 		isPC = bool;

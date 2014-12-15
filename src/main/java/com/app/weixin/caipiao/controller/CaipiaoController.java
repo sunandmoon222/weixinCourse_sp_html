@@ -13,7 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.app.weixin.caipiao.model.CaipiaoDltBean;
+import com.app.weixin.caipiao.model.CaipiaoBaseBean;
 import com.app.weixin.caipiao.service.CaipiaoService;
 
 @Controller 
@@ -29,7 +29,7 @@ public class CaipiaoController {
 	public String dltResponse(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		logger.debug("dltResponse start");
 		
-		List<CaipiaoDltBean> list = caipiaoService.getDltInfo();
+		List<CaipiaoBaseBean> list = caipiaoService.getDltInfo();
 		
 		model.addAttribute("daletouInfoList",list);
 		model.addAttribute("remaindBounus",list.get(0).getRemaindBounus());
