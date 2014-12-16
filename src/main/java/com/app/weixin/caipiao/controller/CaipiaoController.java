@@ -34,7 +34,7 @@ public class CaipiaoController {
 		
 		model.addAttribute("caipiaoName",ConstantCaipiao.CAIPIAO_NAME_DALETOU);
 		model.addAttribute("caipiaoInfo",list);
-		model.addAttribute("remaindBounus",list.get(0).getRemaindBounus()!=""?list.get(0).getRemaindBounus():0);
+		model.addAttribute("remaindBounus",list.get(0).getRemaindBounus().equals("")?0:list.get(0).getRemaindBounus());
 
 		logger.debug("dltResponse end");
 		return "caipiao/caipiao";
@@ -62,23 +62,65 @@ public class CaipiaoController {
 		
 		model.addAttribute("caipiaoName",ConstantCaipiao.CAIPIAO_NAME_PAILIEFIVE);
 		model.addAttribute("caipiaoInfo",list);
-		model.addAttribute("remaindBounus",list.get(0).getRemaindBounus()!=""?list.get(0).getRemaindBounus():0);
+		model.addAttribute("remaindBounus",list.get(0).getRemaindBounus().equals("")?0:list.get(0).getRemaindBounus());
 
 		logger.debug("plwResponse end");
 		return "caipiao/caipiao";
 	}
 	
-	@RequestMapping(value = "/qx", method = RequestMethod.GET)
-	public String qxResponse(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-		logger.debug("qxResponse start");
+	@RequestMapping(value = "/qxc", method = RequestMethod.GET)
+	public String qxcResponse(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		logger.debug("qxcResponse start");
 		
 		List<CaipiaoBaseBean> list = caipiaoService.getCaipiaoInfo(ConstantCaipiao.getSevenStarPath());
 		
 		model.addAttribute("caipiaoName",ConstantCaipiao.CAIPIAO_NAME_SEVENSTAR);
 		model.addAttribute("caipiaoInfo",list);
-		model.addAttribute("remaindBounus",list.get(0).getRemaindBounus()!=""?list.get(0).getRemaindBounus():0);
+		model.addAttribute("remaindBounus",list.get(0).getRemaindBounus().equals("")?0:list.get(0).getRemaindBounus());
 
-		logger.debug("qxResponse end");
+		logger.debug("qxcResponse end");
+		return "caipiao/caipiao";
+	}
+	
+	@RequestMapping(value = "/ssq", method = RequestMethod.GET)
+	public String ssqResponse(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		logger.debug("ssqResponse start");
+		
+		List<CaipiaoBaseBean> list = caipiaoService.getCaipiaoInfo(ConstantCaipiao.getShuangSeQiuPath());
+		
+		model.addAttribute("caipiaoName",ConstantCaipiao.CAIPIAO_NAME_SHUANGSEQIU);
+		model.addAttribute("caipiaoInfo",list);
+		model.addAttribute("remaindBounus",list.get(0).getRemaindBounus().equals("")?0:list.get(0).getRemaindBounus());
+
+		logger.debug("ssqResponse end");
+		return "caipiao/caipiao";
+	}
+	
+	@RequestMapping(value = "/qlc", method = RequestMethod.GET)
+	public String qlcResponse(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		logger.debug("qlcResponse start");
+		
+		List<CaipiaoBaseBean> list = caipiaoService.getCaipiaoInfo(ConstantCaipiao.getSevenHappyPath());
+		
+		model.addAttribute("caipiaoName",ConstantCaipiao.CAIPIAO_NAME_SEVEN_HAPPY);
+		model.addAttribute("caipiaoInfo",list);
+		model.addAttribute("remaindBounus",list.get(0).getRemaindBounus().equals("")?0:list.get(0).getRemaindBounus());
+
+		logger.debug("qlcResponse end");
+		return "caipiao/caipiao";
+	}
+	
+	@RequestMapping(value = "/3d", method = RequestMethod.GET)
+	public String threeDResponse(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		logger.debug("threeDResponse start");
+		
+		List<CaipiaoBaseBean> list = caipiaoService.getCaipiaoInfo(ConstantCaipiao.getThreeDPath());
+		
+		model.addAttribute("caipiaoName",ConstantCaipiao.CAIPIAO_NAME_THREE_D);
+		model.addAttribute("caipiaoInfo",list);
+		model.addAttribute("remaindBounus",list.get(0).getRemaindBounus().equals("")?0:list.get(0).getRemaindBounus());
+
+		logger.debug("threeDResponse end");
 		return "caipiao/caipiao";
 	}
 }

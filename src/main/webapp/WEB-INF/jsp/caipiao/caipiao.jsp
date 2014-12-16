@@ -24,9 +24,12 @@
 	<ul data-role="listview" data-dividertheme="e">
 	   <li data-role="list-divider">最近十期开奖结果</li>
 	   	   <c:forEach var="caipiaoInfo" items="${caipiaoInfo}">
-			   <li>第${caipiaoInfo.id}期 <span style="position: absolute;right: 50px;color:red">${caipiaoInfo.resultNum}</span>
+			   <li>第${caipiaoInfo.id}期 <span style="position: absolute;right: 70px;color:red">${caipiaoInfo.resultNum}</span>
 			   						   <c:if test="${!empty caipiaoInfo.resultNumBlue}">
-			   						   		<span style="position: absolute;right: 10px;color:blue">${caipiaoInfo.resultNumBlue}</span>
+			   						   		<span style="position: absolute;right: 30px;color:blue">${caipiaoInfo.resultNumBlue}</span>
+			   						   </c:if>
+			   						   	<c:if test="${!empty caipiaoInfo.resultNumSpecial}">
+			   						   		<span style="position: absolute;right: 10px;color:blue">${caipiaoInfo.resultNumSpecial}</span>
 			   						   </c:if>
 			   </li>
 		   </c:forEach>

@@ -41,6 +41,8 @@ public class CaipiaoService {
 						daletou.setResultNum(((Element)employeeInfo.get(j)).getValue());
 					} else if (((Element)employeeInfo.get(j)).getName().equals("resultNumBlue")) {
 						daletou.setResultNumBlue(((Element)employeeInfo.get(j)).getValue());
+					} else if (((Element)employeeInfo.get(j)).getName().equals("resultNumSpecial")) {
+						daletou.setResultNumSpecial(((Element)employeeInfo.get(j)).getValue());
 					} else if (((Element)employeeInfo.get(j)).getName().equals("openTime")) {
 						daletou.setOpenTime(((Element)employeeInfo.get(j)).getValue());
 					} else if (((Element)employeeInfo.get(j)).getName().equals("updateDate")) {
