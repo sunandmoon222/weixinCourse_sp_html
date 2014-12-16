@@ -10,19 +10,18 @@ import org.jdom.input.SAXBuilder;
 import org.springframework.stereotype.Service;
 
 import com.app.weixin.caipiao.model.CaipiaoBaseBean;
-import com.app.weixin.caipiao.model.ConstantCaipiao;
 
 @Service
 public class CaipiaoService {
 
-	public List<CaipiaoBaseBean> getDltInfo() {
+	public List<CaipiaoBaseBean> getCaipiaoInfo(String filePath) {
 
 		List<CaipiaoBaseBean> arr = new ArrayList<CaipiaoBaseBean>();
 		File file = null;
 		
 		SAXBuilder builder=new SAXBuilder(false);    
 		try {
-			file = new File(ConstantCaipiao.getDaLeTouPath());
+			file = new File(filePath);
 			Document document=builder.build(file);   
 			Element employees=(Element) document.getRootElement();
 			
@@ -35,7 +34,6 @@ public class CaipiaoService {
 				
 				CaipiaoBaseBean daletou = new CaipiaoBaseBean();
 				for (int j = 0; j < employeeInfo.size(); j++) {
-					
 					
 					if (((Element)employeeInfo.get(j)).getName().equals("id")) {
 						daletou.setId(((Element)employeeInfo.get(j)).getValue());

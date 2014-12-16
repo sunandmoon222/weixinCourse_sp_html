@@ -6,6 +6,21 @@ public class ConstantCaipiao {
 	public final static int THREAD_SLEEP_TIME = 2;
 	private static boolean isPC = false;
 	
+	//超级大乐透
+	public static final String CAIPIAO_NAME_DALETOU = "超级大乐透";
+	//排列三
+	public static final String CAIPIAO_NAME_PAILIESAN = "排列三";
+	//排列五
+	public static final String CAIPIAO_NAME_PAILIEFIVE = "排列五";
+	//七星彩
+	public static final String CAIPIAO_NAME_SEVENSTAR = "七星彩";
+	//双色球
+	public static final String CAIPIAO_NAME_SHUANGSEQIU = "双色球";
+	//七乐彩
+	public static final String CAIPIAO_NAME_SEVEN_HAPPY = "七乐彩";
+	//3D
+	public static final String CAIPIAO_NAME_THREE_D = "3D";
+	
 	public static void setIsPC (boolean bool) {
 		isPC = bool;
 	}
