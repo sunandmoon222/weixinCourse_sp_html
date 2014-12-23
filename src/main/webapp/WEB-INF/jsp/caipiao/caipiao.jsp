@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/util/include.jsp"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<meta charset="utf-8">
+<head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 <meta name="format-detection" content="telephone=no" />
 <link rel="stylesheet" type="text/css" href="<%=cssPath %>jquery.mobile-1.0b1.css"/>
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<%=cssPath %>main.v01.css" media="screen">
 <script>
 </script>
-
+</head>
 <body>
 
 <div data-role="page" id="page">
