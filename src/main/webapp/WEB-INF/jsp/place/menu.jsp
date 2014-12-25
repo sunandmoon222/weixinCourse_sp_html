@@ -23,6 +23,7 @@ function getLocation(){
     gc.getLocation(point, function(rs){
        var addComp = rs.addressComponents;
 	   $('#city').html(addComp.city);
+	   $('#cityNow').attr('value',addComp.city);
       });
    }
 
@@ -51,8 +52,10 @@ function getLocation(){
 //	});
 //}
 
-	function submitFood() {
-		document.location = "/weixinCourse_sp/caipiao/dlt.do";
+	function submitBash() {
+		document.location = "/weixinCourse_sp/place/bash.do?locationX="+
+							$('#locationX').val()+("&locationY=")+$('#locationY').val()+
+							("&cityNow=")+$('#cityNow').val();
 	}
 
 	</script>
@@ -63,22 +66,22 @@ function getLocation(){
     <h1>当前城市：<span id="city" title=""></span></h1>
   </div>
   <div data-role="content" data-theme="d">
-		<img id = "food" alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77" onclick="javascript:submitFood()">
-		<img alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-		<img alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-		<img alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+		<img id = "food" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77" onclick="javascript:submitBash()">
+		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
   </div>
   <div data-role="content" data-theme="d">
-		<img alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-		<img alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-		<img alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-		<img alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
   </div>
   <div data-role="content" data-theme="d">
-		<img alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-		<img alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-		<img alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-		<img alt="加载中" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
   </div>
    <div data-role="content" data-theme="c">
     <h1>${location_x}</h1>
@@ -92,7 +95,9 @@ function getLocation(){
 -->
 </div>
 
-<input type="hidden" id = "location_x" name = "location_x" value = '${location_x}'>
-<input type="hidden" id = "location_y" name = "location_x" value = '${location_y}'>
+<input type="hidden" id = "locationX" name = "locationX" value = '${location_x}'>
+<input type="hidden" id = "locationY" name = "locationY" value = '${location_y}'>
+<input type="hidden" id = "cityNow" name = "cityNow" value = ''>
+
 </body>
 </html>
