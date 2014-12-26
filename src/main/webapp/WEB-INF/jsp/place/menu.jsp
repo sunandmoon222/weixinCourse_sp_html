@@ -52,8 +52,8 @@ function getLocation(){
 //	});
 //}
 
-	function submitBash() {
-		document.location = "/weixinCourse_sp/place/bash.do?locationX="+
+	function submitBash(service) {
+		document.location = "/weixinCourse_sp/place/"+service".do?locationX="+
 							$('#locationX').val()+("&locationY=")+$('#locationY').val()+
 							("&cityNow=")+$('#cityNow').val();
 	}
@@ -66,10 +66,16 @@ function getLocation(){
     <h1>当前城市：<span id="city" title=""></span></h1>
   </div>
   <div data-role="content" data-theme="d">
-		<img id = "food" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77" onclick="javascript:submitBash()">
+		<img id = "food" src="<%=imgPath %>hotPot.png" style="width:65px;height: 77" onclick="javascript:submitBash('bash')">
 		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
 		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
 		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
+  </div>
+  <div data-role="content" data-theme="d" >
+		<a href="#" data-role="button" data-inline="true" style= "background-image:url('<%=imgPath %>hotPot.png');">洗浴</a>
+		<a href="#" data-role="button" data-inline="true">火锅</a>
+		<a href="#" data-role="button" data-inline="true">烧烤</a>
+		<a href="#" data-role="button" data-inline="true">电影院</a>
   </div>
   <div data-role="content" data-theme="d">
 		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
@@ -77,19 +83,15 @@ function getLocation(){
 		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
 		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
   </div>
-  <div data-role="content" data-theme="d">
-		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-		<img src="<%=imgPath %>hotPot.png" style="width:65px;height: 77">
-  </div>
-   <div data-role="content" data-theme="c">
+  
+  
+<!--   <div data-role="content" data-theme="c">
     <h1>${location_x}</h1>
   </div>
     <div data-role="content" data-theme="d">
     <h1>${location_y}</h1>
   </div>
-<!--<div data-role="footer">
+<div data-role="footer">
     	<h4>Footer</h4>
     </div>
 -->
