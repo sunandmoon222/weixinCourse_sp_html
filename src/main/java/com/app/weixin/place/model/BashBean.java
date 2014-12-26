@@ -4,7 +4,8 @@ public class BashBean {
 	
 	private String uid = "";
 	private String name="";
-	private String location="";
+	private String locationX="";
+	private String locationY="";
 	private String address="";
 	private String telephone="";
 	private String distance="";
@@ -40,11 +41,17 @@ public class BashBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getLocation() {
-		return location;
+	public String getLocationX() {
+		return locationX;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocationX(String locationX) {
+		this.locationX = locationX;
+	}
+	public String getLocationY() {
+		return locationY;
+	}
+	public void setLocationY(String locationY) {
+		this.locationY = locationY;
 	}
 	public String getAddress() {
 		return address;

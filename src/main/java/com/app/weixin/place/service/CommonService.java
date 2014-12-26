@@ -62,9 +62,8 @@ public class CommonService {
 				bashBean.setName(String.valueOf(jsonResult.get("name")));
 				
 				JSONObject jsonLocation = (JSONObject)jsonResult.get("location");
-				String lat = String.valueOf(jsonLocation.get("lat"));
-				String lng = String.valueOf(jsonLocation.get("lng"));
-				bashBean.setLocation(lat+"|"+lng);
+				bashBean.setLocationX(String.valueOf(jsonLocation.get("lat")));
+				bashBean.setLocationY(String.valueOf(jsonLocation.get("lng")));
 				
 				bashBean.setAddress(String.valueOf(jsonResult.get("address")));
 				bashBean.setTelephone(String.valueOf(jsonResult.get("telephone")));

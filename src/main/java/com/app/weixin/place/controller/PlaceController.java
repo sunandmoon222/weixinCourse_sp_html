@@ -34,18 +34,43 @@ public class PlaceController {
 	@RequestMapping(value="/bash",method = RequestMethod.GET)
 	public String bashRequest(ModelMap model,HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, JSONException {
 		
-		String locationX = request.getParameter("locationX");
-		String locationY = request.getParameter("locationY");
+		String locationFromX = request.getParameter("locationX");
+		String locationFromY = request.getParameter("locationY");
 		String cityNow = new String(request.getParameter("cityNow").getBytes("iso-8859-1"), "UTF-8");
-		List<BashBean> bashBeanList= commonService.getBashInfo(locationX,
-															   locationY,
+		List<BashBean> bashBeanList= commonService.getBashInfo(locationFromX,
+				locationFromY,
 															   cityNow);
+		if (bashBeanList != null) {
+			model.addAttribute("count",bashBeanList.size());
+			model.addAttribute("bashBeanList", bashBeanList);
+		} else {
+			model.addAttribute("count",0);
+		}
 		
-		model.addAttribute("bashBeanList", bashBeanList);
-		model.addAttribute("locationX", locationX);
-		model.addAttribute("locationY", locationY);
+		model.addAttribute("locationFromX", locationFromX);
+		model.addAttribute("locationFromY", locationFromY);
 		model.addAttribute("cityNow", cityNow);
 		return "place/bash";
 	}
+	
+	@RequestMapping(value="/bashMap",method = RequestMethod.GET)
+	public String bashMapRequest(ModelMap model,HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, JSONException {
+		
+		String locationFromX = request.getParameter("locationFromX");
+		String locationFromY = request.getParameter("locationFromY");
+		String locationToX = request.getParameter("locationToX");
+		String locationToY = request.getParameter("locationToY");
+		String destination = new String(request.getParameter("destination").getBytes("iso-8859-1"), "UTF-8");
+		String cityNow = new String(request.getParameter("cityNow").getBytes("iso-8859-1"), "UTF-8");
+		
+		
+		model.addAttribute("destination", destination);
+		model.addAttribute("locationFromX", locationFromX);
+		model.addAttribute("locationFromY", locationFromY);
+		model.addAttribute("locationToX", locationToX);
+		model.addAttribute("locationToY", locationToY);
+		model.addAttribute("cityNow", cityNow);
+		
+		return "place/bashMap";
+	}
 }
- 
