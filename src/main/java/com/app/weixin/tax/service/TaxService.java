@@ -48,8 +48,8 @@ public class TaxService {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		
-		if (list.size() > 0 && list.get(0).getYear().equals(cal.get(Calendar.YEAR))
-							&& list.get(0).getMonth().equals(""+cal.get(Calendar.MONTH)+1)) {
+		if (list.size() > 0 && list.get(0).getYear().equals(String.valueOf(cal.get(Calendar.YEAR)))
+							&& list.get(0).getMonth().equals(String.valueOf(cal.get(Calendar.MONTH)+1))) {
 			return;
 		}
 		
@@ -125,5 +125,9 @@ public class TaxService {
 			return list.get(0).getMonth();
 		else 
 			return "";
+	}
+	
+	public List<TaxResultModel> getTaxResultModelList() {
+		return list;
 	}
 }

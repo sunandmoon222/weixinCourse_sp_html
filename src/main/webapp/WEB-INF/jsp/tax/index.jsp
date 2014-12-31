@@ -95,6 +95,11 @@ function search() {
     }); 
 }
 
+function gotoDataPage() {
+	document.location = "/weixinCourse_sp/tax/search.do"
+	return true;
+}
+
 </script>
 </head>
 <body>
@@ -128,8 +133,8 @@ function search() {
 	   <div id="result2" style="display: none; style="display: none;">
 	   <br><br>
 	   <p>
-	      <span style="color: red;font-size: 150%;font-weight:bold;">发票没有中奖，很遗憾！</span>
-	      <a href="#" data-icon="search" style="width: 10px;height: 10px"></a>
+	      <span style="color: red;font-size: 150%;font-weight:bold;">发票没有中奖，很遗憾！</span><br><br>
+	      <span><a href="#" onclick="javascript:gotoDataPage();">查看本期详细数据  >>>>>></a></span>
 	     <p>
 	  </div>
   </div>

@@ -1,6 +1,7 @@
 package com.app.weixin.tax.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.app.weixin.tax.model.TaxModel;
+import com.app.weixin.tax.model.TaxResultModel;
 import com.app.weixin.tax.model.TaxResultModelList;
 import com.app.weixin.tax.service.TaxService;
 
@@ -48,5 +50,14 @@ public class TaxController {
 		result.put("success", String.valueOf("TRUE"));
 		
 		return result;
+	}
+	
+	@RequestMapping(value="/search",method = RequestMethod.GET)
+	public String search(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+
+		List<TaxResultModel> list = taxService.getTaxResultModelList();
+		
+		model.addAttribute("list", list);
+		return "tax/taxDataPage";
 	}
 }
