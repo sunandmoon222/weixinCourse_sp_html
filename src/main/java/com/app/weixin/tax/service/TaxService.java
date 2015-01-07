@@ -53,6 +53,8 @@ public class TaxService {
 			return;
 		}
 		
+		list.clear();
+		
 		File file = null;
 		SAXBuilder builder=new SAXBuilder(false);
 		
